@@ -1,0 +1,248 @@
+<div class="row">
+    <div class="col-sm-12">
+      <app-card cardTitle="Trading Algorithm Scripts" blockClass="pc-component">
+        <div class="container">
+          <div class="row-divider">
+          <div class="row">
+            <div class="col">
+              <h3>Script 1</h3>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <div class="input-group datepicker-input">
+                  <input
+				class="form-control"
+				placeholder="yyyy-mm-dd"
+				name="dp"
+				ngbDatepicker
+				#d="ngbDatepicker"
+			/>
+			<button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="endDate">End Date</label>
+                <div class="input-group datepicker-input">
+                  <input
+				class="form-control"
+				placeholder="yyyy-mm-dd"
+				name="endDate"
+				ngbDatepicker
+				#ed="ngbDatepicker"
+			/>
+			<button class="btn btn-outline-secondary bi bi-calendar3" (click)="ed.toggle()" type="button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        @for (line of lineDetails; track line) {
+          <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group row">
+                    <label for="TF1" class="col-sm-4 col-form-label">TF<sub>{{line.lineNumber}}</sub></label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="TF1" name="TF1">
+                    </div>
+                    <span class="col-sm-4 col-form-label">%</span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group row">
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span >
+                              <i antIcon type="caret-up" theme="outline" style="color: green;font-size: 24px;"></i>
+                            </span>
+                            <label for="candle1" class="col-form-label">Candle<sub>{{line.lineNumber}}</sub></label>
+                            <input type="text" class="form-control col-8" id="candle1" name="candle1" style="margin-left: 10px;">
+                    <span class="col-sm-4 col-form-label" style="margin-left: 10px;">%</span>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group row">
+                    <label for="rs1" class="col-sm-4 col-form-label">RS<sub>{{line.lineNumber}}</sub></label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="rs1" name="rs1">
+                    </div>
+                    <span class="col-sm-4 col-form-label">%</span>
+                </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="form-group">
+                <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle >
+            @if(line.newLine){
+              +
+            }@else{
+              {{line.operator}}
+            }
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="selectOperator('AND', line.lineNumber)">AND ( & )</button>
+            <button ngbDropdownItem (click)="selectOperator('OR', line.lineNumber)">OR ( || )</button>
+          </div>
+        </div>
+              </div>
+          </div>
+        </div>
+      }
+        <!-- <div class="row">
+          <div class="col-sm-4">
+              <div class="form-group row">
+                  <label for="TF1" class="col-sm-4 col-form-label">TF<sub>2</sub></label>
+                  <div class="col-sm-4">
+                      <input type="text" class="form-control" id="TF1" name="TF1">
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div class="form-group row">
+                  <div class="col-sm-8">
+                      <div class="input-group">
+                          <span >
+                            <i antIcon type="caret-up" theme="outline" style="color: green;font-size: 24px;"></i>
+                          </span>
+                          <label for="candle1" class="col-form-label">Candle<sub>2</sub></label>
+                          <input type="text" class="form-control col-8" id="candle1" name="candle1" style="margin-left: 10px;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div class="form-group row">
+                  <label for="rs1" class="col-sm-4 col-form-label">RS<sub>2</sub></label>
+                  <div class="col-sm-4">
+                      <input type="text" class="form-control" id="rs1" name="rs1">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group row">
+                <label for="TF1" class="col-sm-4 col-form-label">TF<sub>3</sub></label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="TF1" name="TF1">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <span >
+                          <i antIcon type="caret-up" theme="outline" style="color: green;font-size: 24px;"></i>
+                        </span>
+                        <label for="candle1" class="col-form-label">Candle<sub>3</sub></label>
+                        <input type="text" class="form-control col-8" id="candle1" name="candle1" style="margin-left: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group row">
+                <label for="rs1" class="col-sm-4 col-form-label">RS<sub>3</sub></label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="rs1" name="rs1">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+          <div class="form-group">
+            <div ngbDropdown class="d-inline-block">
+			<button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+				+
+			</button>
+			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+				<button ngbDropdownItem>AND ( & )</button>
+				<button ngbDropdownItem>OR ( || )</button>
+			</div>
+		</div>
+              
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+          <div class="form-group row">
+              <label for="TF1" class="col-sm-4 col-form-label">TF<sub>4</sub></label>
+              <div class="col-sm-4">
+                  <input type="text" class="form-control" id="TF1" name="TF1">
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="form-group row">
+              <div class="col-sm-8">
+                  <div class="input-group">
+                      <span >
+                        <i antIcon type="caret-down" theme="outline" style="color: red;font-size: 24px;"></i>
+                      </span>
+                      <label for="candle1" class="col-form-label">Candle<sub>4</sub></label>
+                      <input type="text" class="form-control col-8" id="candle1" name="candle1" style="margin-left: 10px;">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <div class="form-group row">
+              <label for="rs1" class="col-sm-4 col-form-label">RS<sub>4</sub></label>
+              <div class="col-sm-4">
+                  <input type="text" class="form-control" id="rs1" name="rs1">
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+        <div class="form-group row">
+            <label for="TF1" class="col-sm-4 col-form-label">TF<sub>5</sub></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="TF1" name="TF1">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <span >
+                      <i antIcon type="caret-up" theme="outline" style="color: green;font-size: 24px;"></i>
+                    </span>
+                    <label for="candle1" class="col-form-label">Candle<sub>5</sub></label>
+                    <input type="text" class="form-control col-8" id="candle1" name="candle1" style="margin-left: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group row">
+            <label for="rs1" class="col-sm-4 col-form-label">RS<sub>5</sub></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="rs1" name="rs1">
+            </div>
+        </div>
+    </div>
+</div>     -->
+<div class="text-center">
+  <button class="btn btn-primary">Submit</button>
+</div>
+        </div>
+        
+        
+        <!-- <p>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum."
+        </p> -->
+      </app-card>
+    </div>
+  </div>
+  
